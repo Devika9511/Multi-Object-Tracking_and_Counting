@@ -31,3 +31,4 @@ dist/
 
 # Generated video files
 output/*.mp4
+!output/smartflow_demo.mp4
