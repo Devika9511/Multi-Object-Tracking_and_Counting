@@ -1,0 +1,2 @@
+video,manual_left,manual_right,manual_total,system_left,system_right,system_total,difference,accuracy_percent,status
+traffic.mp4,4,2,6,4,4,8,2,66.67,VERIFIED
