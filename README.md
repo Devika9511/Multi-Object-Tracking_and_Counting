@@ -1,183 +1,170 @@
-md
+# SMARTFLOW – Smart Traffic Detection, Tracking and Counting System
 
+SMARTFLOW is a **computer vision-based traffic monitoring system** that detects, tracks, classifies, and counts moving objects from traffic video footage.
 
-🚦 SMARTFLOW – Smart Traffic Detection, Tracking and Counting System
-<p align="center"> <b>Multi-Object Detection • Tracking • Counting • Traffic Analytics</b> </p>
+The system uses **YOLO11** for object detection, **ByteTrack** for multi-object tracking, **OpenCV** for video processing, and **Streamlit** for the interactive dashboard.
 
-SMARTFLOW is a computer vision-based traffic monitoring system that detects, tracks, classifies, and counts moving objects from traffic video footage.
+---
 
-The system combines YOLO11 for object detection, ByteTrack for multi-object tracking, OpenCV for video processing, and Streamlit for an interactive dashboard.
+## 📌 Project Overview
 
-📌 Project Overview
-SMARTFLOW processes traffic videos frame by frame and assigns a unique tracking ID to each detected object.
+SMARTFLOW processes traffic video frame by frame and assigns a **unique tracking ID** to each detected object.
 
-A virtual counting line is placed across the video. When an object's center crosses the line, the system records:
+A virtual counting line is placed in the video. When the center of a tracked object crosses this line, the system records the object and its direction. Each tracking ID is counted only once to avoid double-counting.
 
-Object ID
+### What the system provides
 
-Object type
+- Object detection
+- Multi-object tracking
+- Unique object IDs
+- Line-crossing counting
+- LEFT / RIGHT direction detection
+- Object classification
+- Traffic density estimation
+- Traffic flow estimation
+- CSV data logging
+- Manual count validation
+- Interactive Streamlit dashboard
+- Processed tracking video output
 
-Crossing direction
+---
 
-Timestamp
+## 🎯 Objectives
 
-Frame number
+- Detect moving objects from traffic videos.
+- Track objects across consecutive frames.
+- Assign a unique ID to each tracked object.
+- Count objects when they cross a virtual line.
+- Identify the direction of movement.
+- Avoid counting the same tracked object more than once.
+- Generate traffic statistics and CSV reports.
+- Compare automated counts with manual counts.
+- Provide a simple dashboard for visualization.
 
-Each tracked ID is counted only once, helping prevent double-counting.
+---
 
-🎯 Objectives
-Detect moving objects from traffic videos.
+## ✨ Features
 
-Track objects across consecutive frames.
+| Feature | Description |
+|---|---|
+| 🔍 Object Detection | YOLO11 detects objects in each frame |
+| 🎯 Multi-Object Tracking | ByteTrack maintains object identities |
+| 🆔 Unique Tracking IDs | Each tracked object receives an ID |
+| 🚧 Line Crossing | Objects are counted when crossing the virtual line |
+| ↔️ Direction Detection | LEFT and RIGHT crossings are recorded |
+| 🚗 Object Classification | Objects are classified by type |
+| 📊 Density Estimation | Estimates the current traffic density |
+| 📈 Flow Estimation | Calculates objects per minute |
+| 📝 CSV Logging | Stores frame-level traffic information |
+| 🖥️ Streamlit Dashboard | Provides an interactive visual interface |
+| ✅ Manual Validation | Compares manual and automated counts |
+| 🎬 Demo Output | Provides a processed tracking video |
 
-Assign a unique ID to each tracked object.
+---
 
-Count objects crossing a virtual line.
+## 🛠️ Technologies Used
 
-Determine LEFT and RIGHT crossing directions.
+| Technology | Purpose |
+|---|---|
+| Python 3.11 | Application development |
+| YOLO11 / Ultralytics | Object detection |
+| ByteTrack | Multi-object tracking |
+| OpenCV | Video processing and annotation |
+| Pandas | Data processing and CSV reports |
+| Streamlit | Interactive dashboard |
+| Matplotlib | Data visualization |
 
-Estimate traffic density and flow rate.
+---
 
-Store traffic statistics in CSV reports.
+## 🔄 System Workflow
 
-Compare automated counts with manual counts.
+```text
+Input Video
+    ↓
+YOLO11 Object Detection
+    ↓
+ByteTrack Object Tracking
+    ↓
+Unique Tracking IDs
+    ↓
+Virtual Counting Line
+    ↓
+LEFT / RIGHT Crossing Detection
+    ↓
+Count Each ID Once
+    ↓
+Traffic Statistics
+    ↓
+CSV Reports + Tracked Video
+    ↓
+Streamlit Dashboard
+```
 
-Provide an interactive Streamlit dashboard.
+---
 
-✨ Features
-Feature	Description
-🔍 Object Detection	Detects objects using YOLO11
-🎯 Multi-Object Tracking	Tracks objects using ByteTrack
-🆔 Unique IDs	Maintains an ID for each tracked object
-🚧 Line Crossing	Counts objects crossing a virtual line
-↔️ Direction Detection	Identifies LEFT and RIGHT crossings
-🚗 Object Classification	Classifies detected object types
-📊 Density Estimation	Estimates traffic density
-📈 Flow Estimation	Calculates objects/minute
-📝 CSV Logging	Saves frame-level traffic information
-🖥️ Dashboard	Interactive Streamlit interface
-✅ Manual Validation	Compares manual and system counts
-🎬 Demo Output	Includes a processed tracking demonstration
-🛠️ Technologies Used
-Technology	Purpose
-Python 3.11	Application development
-YOLO11 / Ultralytics	Object detection
-ByteTrack	Multi-object tracking
-OpenCV	Video processing
-Pandas	Data processing and CSV reports
-Streamlit	Interactive dashboard
-Matplotlib	Analytics and visualization
-🔄 System Workflow
-                ┌─────────────────┐
-                │   Input Video   │
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │     YOLO11      │
-                │ Object Detection│
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │    ByteTrack    │
-                │ Object Tracking │
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │  Unique Track   │
-                │       IDs       │
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │ Counting Line   │
-                │    Crossing     │
-                └────────┬────────┘
-                         │
-              ┌──────────┴──────────┐
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │    LEFT     │       │    RIGHT    │
-       │   Crossing  │       │   Crossing  │
-       └──────┬──────┘       └──────┬──────┘
-              └──────────┬──────────┘
-                         ▼
-                ┌─────────────────┐
-                │ Traffic Counts  │
-                │ Density & Flow  │
-                └────────┬────────┘
-                         │
-              ┌──────────┴──────────┐
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │ CSV Reports │       │ Tracked     │
-       │             │       │ Video       │
-       └─────────────┘       └──────┬──────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │ Streamlit       │
-                           │ Dashboard       │
-                           └─────────────────┘
-🚧 Counting Method
-SMARTFLOW uses a vertical virtual counting line positioned at approximately 60% of the video width.
+## 🚧 Counting Method
 
-             LEFT SIDE              RIGHT SIDE
+SMARTFLOW uses a **vertical virtual counting line positioned at approximately 60% of the video width**.
 
-                    │
-                    │  Counting Line
-                    │
-       ◄────────────│────────────►
-                    │
-                    │
-Direction Rules
-LEFT crossing: object moves from the right side of the line to the left side.
+```text
+        LEFT SIDE       COUNTING LINE       RIGHT SIDE
 
-RIGHT crossing: object moves from the left side of the line to the right side.
+             ←                │                →
+                              │
+                              │
+             ←                │                →
+```
 
-An object is counted only once using its unique tracking ID.
+### Counting Rules
 
-Objects that do not cross the line are not included in the crossing count.
+- **LEFT crossing:** object moves from the right side of the line to the left side.
+- **RIGHT crossing:** object moves from the left side of the line to the right side.
+- Each tracked ID is counted only once.
+- Objects that do not cross the line are not included in the crossing count.
 
-This prevents the same tracked object from being intentionally counted multiple times.
+This approach helps prevent double-counting.
 
-🧠 Object Detection & Tracking
-YOLO11
-YOLO11 detects objects in each video frame and provides:
+---
 
-Bounding boxes
+## 🧠 Detection and Tracking
 
-Object classes
+### YOLO11
 
-Confidence scores
+YOLO11 is used to detect objects in every video frame.
 
-ByteTrack
-ByteTrack associates detections across consecutive frames and maintains tracking IDs.
+It provides:
 
-The tracking ID allows SMARTFLOW to follow the same object over time and apply the count-once rule when it crosses the counting line.
+- Bounding boxes
+- Object classes
+- Confidence scores
 
-🚗 Supported Object Types
-The current pipeline supports multiple YOLO/COCO object classes, including:
+### ByteTrack
 
-👤 Person
+ByteTrack associates detections across consecutive frames and maintains a tracking ID for each object.
 
-🚲 Bicycle
+The tracking ID allows SMARTFLOW to follow an object over time and determine whether it has crossed the counting line.
 
-🚗 Car
+---
 
-🏍️ Motorcycle
+## 🚗 Supported Object Types
 
-🚌 Bus
+The current multi-object pipeline supports YOLO/COCO classes including:
 
-🚚 Truck
+- Person
+- Bicycle
+- Car
+- Motorcycle
+- Bus
+- Truck
+- Other supported YOLO classes
 
-Other supported YOLO classes
+> **Limitation:** The standard COCO-trained YOLO model does not have a dedicated `auto-rickshaw` class. Therefore, an auto-rickshaw may be classified as another available class such as `car` or `truck`.
 
-Note: The standard COCO-trained YOLO model does not contain a dedicated auto-rickshaw class. Therefore, an auto-rickshaw may be classified as another available class such as car or truck. This is a known limitation of the general-purpose model.
+---
 
-📁 Project Structure
+## 📁 Project Structure
+
+```text
 SMARTFLOW/
 │
 ├── input/
@@ -192,6 +179,7 @@ SMARTFLOW/
 ├── reports/
 │   ├── traffic_data.csv
 │   ├── example1_traffic_data.csv
+│   ├── ml_dataset.csv
 │   └── count_report.csv
 │
 ├── src/
@@ -212,298 +200,370 @@ SMARTFLOW/
 ├── SMARTFLOW_Two_Video_Technical_Report.pdf
 ├── .gitignore
 └── README.md
-⚙️ Installation
-1. Clone the Repository
+```
+
+> **Note:** Large input videos are kept outside the GitHub repository. The `input/` folder is shown above to explain where videos should be placed when running the project locally.
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the Repository
+
+```powershell
 git clone https://github.com/Devika9511/Multi-Object-Tracking_and_Counting.git
 cd Multi-Object-Tracking_and_Counting
-2. Create a Virtual Environment
+```
+
+### 2. Create a Virtual Environment
+
+```powershell
 python -m venv venv
-Activate the environment:
+```
 
-.\venv\Scripts\Activate.ps1
-3. Install Dependencies
+Activate it:
+
+```powershell
+.env\Scripts\Activate.ps1
+```
+
+### 3. Install Dependencies
+
+```powershell
 pip install -r requirements.txt
-The repository includes the yolo11n.pt model file.
+```
 
-🎥 Input Video
-Place your MP4 video inside:
+The repository contains the `yolo11n.pt` model file.
 
+---
+
+## 🎥 Input Video
+
+Place an MP4 video inside:
+
+```text
 input/
-Example:
+```
 
+For example:
+
+```text
 input/
 ├── traffic.mp4
 └── example1.mp4
-Large input videos are kept outside the GitHub repository to keep the repository lightweight. After cloning, place the required video inside the input/ folder.
+```
 
-▶️ Run the Tracking Pipeline
-Analyze traffic.mp4
-python src\main.py input\traffic.mp4
-Analyze example1.mp4
+The Streamlit dashboard automatically detects available MP4 files in the `input/` folder.
+
+---
+
+## ▶️ Run the Tracking Pipeline
+
+### Analyze traffic.mp4
+
+```powershell
+python src\main.py input	raffic.mp4
+```
+
+### Analyze example1.mp4
+
+```powershell
 python src\main.py input\example1.mp4
-Default Video
-If no video path is provided:
+```
 
+### Use the default video
+
+```powershell
 python src\main.py
-The default input is:
+```
 
+The default video is:
+
+```text
 input/traffic.mp4
-🖥️ Run the Streamlit Dashboard
+```
+
+---
+
+## 🖥️ Run the Streamlit Dashboard
+
 Start the dashboard:
 
+```powershell
 streamlit run app.py
+```
+
 The dashboard allows you to:
 
-Select an input video.
+1. Select an input video.
+2. Run the analysis.
+3. View the tracked video.
+4. View objects currently in the frame.
+5. View total objects counted.
+6. View LEFT crossings.
+7. View RIGHT crossings.
+8. View traffic density.
+9. View flow rate.
+10. View object-type statistics.
+11. View analytics.
+12. View count validation.
 
-Run the analysis.
+---
 
-View the tracked video.
+## 🎬 Output
 
-View objects currently in the frame.
+SMARTFLOW generates a processed video containing:
 
-View total counted objects.
+- Object bounding boxes
+- Object labels
+- Tracking IDs
+- Counting line
+- Direction information
+- Count information
 
-View LEFT crossings.
+### Demo Output
 
-View RIGHT crossings.
+A short processed demonstration video is included in the repository:
 
-View traffic density.
-
-View flow rate.
-
-View object-type statistics.
-
-View analytics.
-
-View count validation.
-
-📊 Dashboard Metrics
-The dashboard displays:
-
-┌──────────────────────────────┐
-│ Objects in Frame             │
-├──────────────────────────────┤
-│ Total Objects Counted        │
-├──────────────────────────────┤
-│ LEFT Crossings               │
-├──────────────────────────────┤
-│ RIGHT Crossings              │
-├──────────────────────────────┤
-│ Traffic Density              │
-├──────────────────────────────┤
-│ Flow Rate                    │
-└──────────────────────────────┘
-🎬 Output
-The project generates a processed video containing:
-
-Object bounding boxes
-
-Object labels
-
-Tracking IDs
-
-Counting line
-
-Direction information
-
-Count information
-
-Demo Output
-A short demonstration output is included:
-
+```text
 output/
 └── smartflow_demo.mp4
-Generated Outputs
-For a video such as traffic.mp4, the system generates:
+```
 
+The demo output is provided so that the project can be inspected without uploading the large original traffic videos.
+
+### Generated Output for traffic.mp4
+
+```text
 output/
 ├── smartflow_traffic_tracked.mp4
 └── smartflow_traffic_tracked_h264.mp4
-For example1.mp4:
+```
 
+### Generated Output for example1.mp4
+
+```text
 output/
 ├── smartflow_example1_tracked.mp4
 └── smartflow_example1_tracked_h264.mp4
-The H.264 version is suitable for browser/dashboard playback.
+```
 
-📝 Reports
-Traffic Data
+The H.264 version is used for browser and Streamlit playback.
+
+---
+
+## 📊 Reports
+
+### 1. Traffic Data
+
+```text
 reports/traffic_data.csv
-Contains frame-level information including:
+```
 
-Timestamp
+Contains frame-level traffic information such as:
 
-Frame number
+- Timestamp
+- Frame number
+- Objects
+- Object types
+- Density
+- Direction
+- Flow rate
 
-Objects
+### 2. Example Video Data
 
-Object types
-
-Density
-
-Direction
-
-Flow rate
-
-Example Video Report
+```text
 reports/example1_traffic_data.csv
-Contains the traffic analysis data generated for example1.mp4.
+```
 
-Count Validation
+Contains the analysis data generated for `example1.mp4`.
+
+### 3. Count Validation
+
+```text
 reports/count_report.csv
-Contains manual-versus-system count comparison.
+```
 
-Technical Report
+Contains manual-versus-system count comparison and accuracy.
+
+### 4. Technical Report
+
+```text
 SMARTFLOW_Two_Video_Technical_Report.pdf
-Contains:
+```
 
-Project objective
+Contains the project methodology, detector/tracker selection, test results, validation, limitations, and conclusion.
 
-Methodology
+---
 
-Detector and tracker selection
+## 🧪 Experimental Results
 
-Counting method
-
-Test results
-
-Manual validation
-
-Known limitations
-
-Conclusion
-
-🧪 Experimental Results
 The system was tested on two videos.
 
-Video	Resolution	FPS	Frames	System Total	LEFT	RIGHT
-traffic.mp4	1920×1080	25	525	9	4	5
-example1.mp4	3840×2160	30	323	6	6	0
-traffic.mp4
-Detected object types:
+| Video | Resolution | FPS | Frames | Total Counted | LEFT | RIGHT |
+|---|---:|---:|---:|---:|---:|---:|
+| `traffic.mp4` | 1920×1080 | 25 | 525 | **9** | 4 | 5 |
+| `example1.mp4` | 3840×2160 | 30 | 323 | **6** | 6 | 0 |
 
-Object Type	Count
-Car	6
-Truck	2
-Person	1
-Total	9
-System result:
+### traffic.mp4
 
+| Object Type | Count |
+|---|---:|
+| Car | 6 |
+| Truck | 2 |
+| Person | 1 |
+| **Total** | **9** |
+
+```text
 Total Objects Counted : 9
 LEFT Crossings        : 4
 RIGHT Crossings       : 5
 Average Flow          : 25.71 objects/min
-example1.mp4
-Detected object types:
+```
 
-Object Type	Count
-Car	2
-Person	2
-Bus	1
-Motorcycle	1
-Total	6
-System result:
+### example1.mp4
 
+| Object Type | Count |
+|---|---:|
+| Car | 2 |
+| Person | 2 |
+| Bus | 1 |
+| Motorcycle | 1 |
+| **Total** | **6** |
+
+```text
 Total Objects Counted : 6
 LEFT Crossings        : 6
 RIGHT Crossings       : 0
 Average Flow          : 33.44 objects/min
-✅ Manual Count Validation
-For example1.mp4, manual counting was performed using the same virtual counting line and crossing rules used by the system.
+```
 
-Metric	Manual	System	Difference
-LEFT	6	6	0
-RIGHT	0	0	0
-Total	6	6	0
-Accuracy	100%	100%	0% difference
+---
+
+## ✅ Manual Count Validation
+
+Manual validation was completed for `example1.mp4` using the same counting line and crossing rules as the automated system.
+
+| Metric | Manual | System | Difference |
+|---|---:|---:|---:|
+| LEFT | 6 | 6 | 0 |
+| RIGHT | 0 | 0 | 0 |
+| **Total** | **6** | **6** | **0** |
+| **Accuracy** | **100%** | **100%** | **0% difference** |
+
 Validation file:
 
+```text
 reports/count_report.csv
-The traffic.mp4 values above represent the automated pipeline test. A manual accuracy value for traffic.mp4 should only be added after separate manual validation.
+```
 
-⚠️ Known Limitations
-Detection accuracy depends on video quality, lighting, camera angle, and object size.
+> The `traffic.mp4` result shown above is the automated pipeline test result. A manual accuracy value for `traffic.mp4` is not reported until separate manual validation is completed.
 
-Heavy occlusion can cause missed detections.
+---
 
-Small or distant objects may not be detected reliably.
+## 🖥️ Dashboard
 
-Severe occlusion can result in temporary tracking loss or ID changes.
+The Streamlit dashboard provides a simple interface for monitoring and analyzing the selected video.
 
-The counting-line position may need adjustment for different camera views.
+### Dashboard Metrics
 
-The general COCO model does not provide a dedicated auto-rickshaw class.
+| Metric | Description |
+|---|---|
+| Objects in Frame | Objects currently visible |
+| Total Objects Counted | Unique objects that crossed the line |
+| LEFT Crossings | Objects moving right-to-left |
+| RIGHT Crossings | Objects moving left-to-right |
+| Density | Current traffic density |
+| Flow Rate | Estimated objects per minute |
 
-High-resolution videos require more processing time.
+---
 
-Manual validation depends on applying the same counting-line rule consistently.
+## ⚠️ Known Limitations
 
-🚀 Future Improvements
-Train a custom traffic-specific YOLO model.
+- Detection accuracy depends on video quality, lighting, camera angle, and object size.
+- Heavy occlusion can cause missed detections.
+- Small or distant objects may not be detected reliably.
+- Severe occlusion can cause temporary tracking loss or ID changes.
+- The counting-line position may need adjustment for different camera views.
+- The general COCO model does not provide a dedicated auto-rickshaw class.
+- High-resolution videos require more processing time.
+- Manual validation depends on applying the same counting rule consistently.
 
-Add a dedicated auto-rickshaw class.
+---
 
-Improve tracking under heavy occlusion.
+## 🚀 Future Improvements
 
-Add configurable counting lines.
+- Train a custom traffic-specific YOLO model.
+- Add a dedicated auto-rickshaw class.
+- Improve tracking under heavy occlusion.
+- Add configurable counting lines.
+- Add region-of-interest selection.
+- Add real-time CCTV/camera support.
+- Add more detailed traffic analytics.
+- Compare multiple tracking algorithms.
+- Deploy the Streamlit dashboard as a web application.
 
-Add region-of-interest selection.
+---
 
-Add real-time CCTV/camera support.
+## 📦 Assignment Deliverables
 
-Add more detailed traffic analytics.
+| Deliverable | Status |
+|---|---|
+| Object detection pipeline | ✅ Completed |
+| Multi-object tracking | ✅ Completed |
+| Unique object IDs | ✅ Completed |
+| Line-crossing counting | ✅ Completed |
+| Direction detection | ✅ Completed |
+| Testing on multiple videos | ✅ Completed |
+| CSV traffic reports | ✅ Completed |
+| Manual count validation | ✅ Completed for `example1.mp4` |
+| Count report | ✅ Completed |
+| Streamlit dashboard | ✅ Completed |
+| Tracked demo output | ✅ Included |
+| Technical report | ✅ Included |
+| README documentation | ✅ Completed |
 
-Compare multiple tracking algorithms.
+---
 
-Deploy the dashboard as a web application.
+## 🚀 Quick Start
 
-📦 Assignment Deliverables
-Deliverable	Status
-Object detection pipeline	✅ Completed
-Multi-object tracking	✅ Completed
-Unique object IDs	✅ Completed
-Line-crossing counting	✅ Completed
-Direction detection	✅ Completed
-Video testing	✅ Completed
-CSV traffic reports	✅ Completed
-Manual count validation	✅ Completed for example1.mp4
-Count report	✅ Completed
-Streamlit dashboard	✅ Completed
-Tracked demo output	✅ Included
-Technical report	✅ Included
-GitHub README	✅ Completed
-📌 Quick Start
-# Clone
+```powershell
+# Clone repository
 git clone https://github.com/Devika9511/Multi-Object-Tracking_and_Counting.git
 
 # Enter project
 cd Multi-Object-Tracking_and_Counting
 
-# Create environment
+# Create virtual environment
 python -m venv venv
 
-# Activate
-.\venv\Scripts\Activate.ps1
+# Activate environment
+.env\Scripts\Activate.ps1
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Place a video inside input/
+# Place an MP4 video in input/
 
 # Run analysis
-python src\main.py input\traffic.mp4
+python src\main.py input	raffic.mp4
 
 # Launch dashboard
 streamlit run app.py
-🔗 GitHub Repository
-Repository:
+```
+
+---
+
+## 🔗 GitHub Repository
+
+**Repository:**  
 https://github.com/Devika9511/Multi-Object-Tracking_and_Counting
 
-👩‍💻 Project
-SMARTFLOW – Smart Traffic Detection, Tracking and Counting System
+---
 
-Built using:
+## 👩‍💻 Project
 
-YOLO11 + ByteTrack + OpenCV + Streamlit
+**SMARTFLOW – Smart Traffic Detection, Tracking and Counting System**
 
+**Built with:**  
+`YOLO11` • `ByteTrack` • `OpenCV` • `Python` • `Streamlit`
