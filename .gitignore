@@ -29,6 +29,6 @@ build/
 dist/
 *.egg-info/
 
-# Generated video files
+# Generated/input video files
+input/*.mp4
 output/*.mp4
-!output/smartflow_demo.mp4
