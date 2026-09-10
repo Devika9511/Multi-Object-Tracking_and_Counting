@@ -32,3 +32,6 @@ dist/
 # Generated/input video files
 input/*.mp4
 output/*.mp4
+
+# Duplicate generated report
+reports/traffic_traffic_data.csv
